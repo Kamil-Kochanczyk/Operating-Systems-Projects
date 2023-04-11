@@ -1,0 +1,43 @@
+Autor: Kamil Kochańczyk, 31.05.2022
+
+====================================================================================================
+
+Zawartość:
+
+	1. MQLibrary.h
+	- biblioteka funkcji obsługujących kolejki komunikatów
+
+	2. MQLibrary.c
+	- implementacja funkcji wpomnianych wyżej
+
+	3. Server.c
+	- program, który przyjmuje zamówienia od klientów, wykonuje je i odsyła im wyniki
+	- każde zamówienie powinno mieć postać [numer] [operacja] [numer], np. 3 + 5
+	- aby zakończyć program, należy wcisnąć Ctrl-C
+
+	4. Client.c
+	- program, który wysyła do serwera zamówienia postaci [numer] [operacja] [numer], np. 3 + 5
+	- aby zakończyć program, należy wcisnąć Ctrl-D
+
+	5. Makefile
+
+====================================================================================================
+
+Jak uruchomić program:
+
+	1. Najpierw:
+
+		make 8
+
+	2. Później:
+
+		make run8
+
+	3. Czyszczenie:
+
+		make clean
+
+	4. Archiwizacja:
+
+		make tar
+

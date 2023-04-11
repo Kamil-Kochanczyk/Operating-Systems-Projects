@@ -1,0 +1,58 @@
+Autor: Kamil Kochańczyk, 29.03.2022
+
+====================================================================================================
+
+Zawartość:
+
+	1. a.c
+	- program do obsługi sygnałów
+	- przy wywołaniu wymaga dwóch argumentów konsoli
+	- pierwszy argument oznacza numer sygnału do obsługi, drugi argument oznacza sposób obsługi tego sygnału
+	- drugi argument powinien być liczbą 1 (domyślna obsługa), 2 (ignorowanie) lub 3 (własna obsługa)
+	- przykładowe wywołanie programu "./a 20 2" oznacza, że sygnał o numerze 20 ma być przez program zignorowany
+	- jeżeli np. 20 oznacza sygnał SIGTSTP i użytkownik będzie wysyłał ten sygnał wciskając Ctrl-Z, program nie powienien przerywać działania tylko po prostu zignorować ten sygnał
+	- sygnały do programu można też wysyłać za pomocą polecenia kill z poziomu powłoki
+	- aby to zrobić można np. uruchomić program, zastopować go za pomocą Ctrl-Z, wysłać sygnał za pomocą kill i uruchomić ponownie za pomocą fg, żeby zobaczyć efekt
+	
+	2. b.c
+	- proces macierzysty tworzy proces potomny
+	- proces potomny uruchamia program a.c za pomocą funkcji exec
+	- proces macierzysty wysyła sygnał do procesu potomnego i proces potomny jakoś reaguje na ten sygnał
+	- to jaki sygnał proces macierzysty ma wysłać oraz jak proces potomny ma zareagować na ten sygnał jest sprecyzowane za pomocą argumentów konsoli
+	- program powienien być wywoływany z argumentami konsoli analogicznie jak program a.c
+	
+	3. c.c
+	- proces macierzysty tworzy proces potomny
+	- proces potomny staje się liderem nowej grupy procesów
+	- lider grupy tworzy kilka swoich własnych dzieci, które uruchamiają program a.c i czekają na sygnał
+	- główny proces macierzysty czeka aż lider grupy utworzy wszystkie dzieci, a następnie wysyła do całej grupy sygnał
+	- lider grupy ignoruje sygnał, a jego dzieci obsługują sygnał
+	- lider grupy czeka na swoje dzieci, a potem wypisuje informacje o tym, co się z nimi stało
+	- główny proces macierzysty czeka na lidera grupy, a potem kończy działanie
+	- program powinien być wywoływany z argumentami konsoli analogicznie do programów a.c i b.c
+	- pierwszy argument konsoli mówi jaki sygnał należy wysłać do grupy
+	- drugi argument konsoli mówi jak grupa ma zareagować na ten sygnał
+	
+	Uwaga:
+	- jeżeli główny proces macierzysty wyśle sygnał do grupy, który zostanie przez grupę zignorowany program będzie wyglądał tak jakby się zaciął
+	- dzieje się tak dlatego, że głowny proces macierzysty czeka na lidera grupy, lider grupy czeka na swoje dzieci, a dzieci czekają na jakiś sygnał, który je zakończy, bo ten poprzedni został przez nie po prostu zignorowany
+	- można wtedy np. zastopować program wciskając Ctrl-Z i wysłać do grupy jakiś sygnał z poziomu powłoki, np. SIGKILL i uruchomić ponownie program za pomocą fg
+	
+	4. Makefile
+	
+====================================================================================================
+	
+Jak uruchomić program:
+
+	1. Najpierw:
+		
+		make all
+	
+	2. Później na przykład:
+	
+		./a 9 1
+		
+		./b 4 3
+		
+		./c 8 2
+

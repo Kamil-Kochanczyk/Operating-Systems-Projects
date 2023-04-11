@@ -1,0 +1,63 @@
+Autor: Kamil Kochańczyk, 12/13.03.2022
+
+====================================================================================================
+
+Zawartość:
+
+	1. DisplayInfo.h, DisplayInfo.c
+	- nagłówek deklaruje funkcję, która wypisuje informacje o procesie, który ją wywołał
+	- plik źródłowy zapewnia definicję tej funkcji
+	- funkcja ta będzie używana w pozostałych programach
+	- nagłówek zawiera dodatkowo jeszcze zdefiniowaną wartość, która mówi ile procesów potomnych będzie tworzonych w innych programach
+	
+	2. zad1_a.c
+	- (a) Napisać program wypisujący identyfikatory UID, GID, PID, PPID i PGID dla danego procesu.
+	- program powinien wyświetlić na ekranie powyższe identyfikatory
+	
+	3. zad1_b.c
+	- (b) Wywołać funkcję fork trzy razy (najlepiej w pętli for) i wypisać powyższe identyfikatory dla procesu macierzystego oraz wszystkich procesów potomnych. Przy pomocy funkcji wait sprawić, aby
+	  proces macierzysty zaczekał na zakończenie wszystkich procesów potomnych.
+	- program powinien utworzyć n procesów potomnych z procesu macierzystego (gdzie n to wspomniana wartość z nagłówka) i wyświetlić na ekranie identyfikatory każdego procesu
+	
+	4. zad1_c.c
+	- (c) Jak w (b), tylko przy użyciu funkcji sleep (nie używać funkcji wait) sprawiać, by procesy potomne były adoptowane przez proces init lub systemd; poleceniem pstree -p z poziomu powłoki
+	  wyświetlić drzewo procesów w danym systemie i zidentyfikować proces adoptujący osierocone procesy.
+	- program powinien wypisać informacje o procesie macierzystym, a następnie - już po zakończeniu procesu macierzystego - o procesach potomnych; dodatkowo, później powinien wyświetlić drzewo
+	  procesów, a także wyróżnioną kolorem linijkę drzewa, w której znajduje się proces adoptujący osierocone procesy
+	
+	5. zad1_d.c
+	- (d) Jak w (b), tylko wstawić funkcję sleep w takich miejscach programu, aby procesy pojawiały się na ekranie grupowane pokoleniami od najstarszego do najmłodszego, a proces macierzysty kończył
+	  się dopiero po procesach potomnych (nie używać funkcji wait). Na podstawie wyników programu sporządzić (w pliku tekstowym) ,,drzewo genealogiczne” tworzonych procesów z zaznaczonymi
+	  identyfikatorami PID, PPID i PGID.
+	- program powinien tworzyć plik Tree, w którym będzie znajdowało się drzewo genealogiczne procesów; powinien również wypisać na ekranie informacje o wszystkich procesach
+	- każdy utworzony proces powinien mieć jeden proces potomny
+	  
+	6. zad1_e.c
+	- (e) Jak w (b), tylko przy użyciu fukcji setpgid sprawić by każdy proces potomny stawał się liderem swojej własnej grupy procesów.
+	- program powinien działać tak samo jak zad1_b.c, tylko PGID powinny być inne
+	
+	7. Makefile
+	
+	8. Pytania
+	- Ile procesów powstanie przy n-krotnym wywołaniu funkcji fork i dlaczego?
+	
+	9. Tree
+	- plik tekstowy, który tworzy się za każdym razem, gdy uruchamiany jest program zad1_d.c
+	- zawiera drzewo genealogiczne procesów utworzonych przez ten program
+	- zostaje usunięty, gdy uruchamiana jest komenda make clean
+	
+====================================================================================================
+	
+Jak uruchomić program:
+
+	0. Kompilacja wszystkich programów (bez uruchamiania) - make all
+	1. Uruchomienie zad1_a.c - make a
+	2. Uruchomienie zad1_b.c - make b
+	3. Uruchomienie zad1_c.c - make c
+	4. Uruchomienie zad1_d.c - make d
+	5. Uruchomienie zad1_e.c - make e
+	6. Czyszczenie - make clean
+	7. Archiwizacja i kompresja - make tar
+	
+	Uwaga: przy użyciu komendy make all pojawia się naraz wiele plików i może być przez to trudno rozeznać się we wszystkim
+

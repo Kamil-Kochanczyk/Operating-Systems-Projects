@@ -1,0 +1,53 @@
+Autor: Kamil Kochańczyk, 24.04.2022
+
+====================================================================================================
+
+Zawartość:
+
+	1. 5.c
+	- program, który tworzy potok FIFO, następnie uruchamia Producenta i Konsumenta w procesach potomnych, czeka na zakończenie ich działania, a na końcu usuwa potok FIFO
+	- wymaga 3 argumentów konsoli
+	- pierwszy argument musi być nazwą programu Producenta
+	- drugi argument musi być nazwą programu Konsumenta
+	- trzeci argument musi być nazwą pliku z danymi wejściowymi
+
+	2. Producer.c
+	- Producent pobiera dane wejściowe z pliku i przesyła je do potoku FIFO
+	- wymaga 2 argumentów konsoli
+	- pierwszy argument musi być ścieżką do potoku FIFO
+	- drugi argument musi być nazwą pliku z danymi wejściowymi
+
+	3. Consumer.c
+	- Konsument pobiera dane wejściowe z potoku FIFO i przesyła je do innego pliku
+	- wymaga 1 argumentu konsoli, który musi być ścieżką do potoku FIFO
+
+	4. Input
+	- plik tekstowy z danymi wejściowymi
+
+	5. Makefile
+
+====================================================================================================
+
+Jak uruchomić program:
+
+	1. Najpierw:
+
+		make zad5
+
+	2. Później:
+
+		zadanie 5 a)						zadanie 5 b)
+		make 5a     						make 5b
+
+	3. Czyszczenie:
+
+		make clean
+
+	4. Archiwizacja:
+
+		make tar
+
+	Uwaga:
+	- po poleceniu make 5b polecenie diff się nie wykona automatycznie, aby się przekonać, że pliki są takie same, należy je wpisać ręcznie (diff -s Input Output)
+	- po poleceniu make 5b utworzony potok FIFO nie zostanie automatycznie usunięty, można go usunąć np. za pomocą make clean
+

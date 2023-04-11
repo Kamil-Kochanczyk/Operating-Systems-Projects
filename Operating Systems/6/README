@@ -1,0 +1,55 @@
+Autor: Kamil Kochańczyk, 02.05.2022
+
+====================================================================================================
+
+Zawartość:
+
+	1. Library.h
+	- nagłówek zawierający deklaracje funkcji, które pozwalają na różnego rodzaju operacje na semaforach
+
+	2. Library.c
+	- program implementujący funkcje z nagłówka (biblioteka fukcji)
+
+	3. Duplicator.c
+	- program powielacz
+	- wymaga 3 argumentów konsoli
+	- pierwszy argument mówi ile procesów potomnych należy utworzyć (czyli ile razy należy uruchomić program do wzajemnego wykluczania)
+	- drugi argument mówi jaka jest nazwa programu do wzajemnego wykluczania
+	- trzeci argument mówi ile sekcji krytycznych powinno się znajdować w programie do wzajemnego wykluczania
+	- program na początku tworzy plik Number.txt i wpisuje do niego wartość 0
+	- później tworzy kilka procesów potomnych, uruchamia w każdym z nich program do wzajemnego wykluczania i czeka na ich zakończenie
+	- procesy potomne modyfikują wartość w pliku Number.txt
+	- każdy proces potomny zwiększa tę wartość o 1, gdy znajduje się w sekcji krytycznej
+	- ostatecznie ta wartośc powinna więc wynosić: liczba procesów potomnych * liczba sekcji krytycznych
+	- program na końcu odczytuje ostateczną wartość z pliku Number.txt i sprawdza czy jest poprawna
+	- wszystkie procesy potomne są zsynchronizowane za pomocą semafora nazwanego
+
+	4. MutualExclusion.c
+	- program do wzajemnego wykluczania
+	- wymaga 1 argumentu konsoli, który mówi ile powinno być sekcji krytycznych w programie
+	- w programie jest tak naprawdę tylko jedna sekcja krytyczna, ale jest odwiedzana odpowiednią liczbę razy dzięki pętli, co sprawia wrażenie jakby tych sekcji krytycznych było więcej
+	- głównym zadaniem programu jest otworzyć plik Number.txt, odczytać liczbę jaka się w nim znajduje, zwiększyć ją o 1 i zapisać z powrotem do tego samego pliku
+	- program robi to w pętli, w sekcji krytycznej, odpowiednią liczbę razy, wypisując przy tym informacje na ekranie
+
+	5. Makefile
+
+====================================================================================================
+
+Jak uruchomić program:
+
+	1. Najpierw:
+
+		make 6
+
+	2. Później na przykład:
+
+		./Duplicator 3 MutualExclusion 5
+
+	3. Czyszczenie:
+
+		make clean
+
+	4. Archiwizacja:
+
+		make tar
+

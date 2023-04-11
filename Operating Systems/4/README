@@ -1,0 +1,39 @@
+Autor: Kamil Kochańczyk, 12.04.2022
+
+====================================================================================================
+
+Zawartość:
+
+	1. 4.c
+	- program, w którym są dwa procesy (macierzysty i potomny)
+	- proces potomny to producent, który pobiera dane z pliku (np. z pliku Input) i umieszcza je w potoku
+	- proces macierzysty to konsument, który pobiera dane z potoku i umieszcza je w innym pliku (np. w pliku Output)
+	- program wymaga dwóch argumentów konsoli
+	- pierwszy argument to nazwa pliku, z którego producent pobiera dane i przesyła je później do potoku (może to być np. plik Input)
+	- drugi argument to nazwa pliku, do którego konsument przekazuje dane, jakie odczytał z potoku
+	- pierwszy argument musi być nazwą pliku, który istnieje w tym samym folderze co program 4.c
+	- drugi argument nie musi być nazwą istniejącego pliku, jeżeli plik o tej nazwie nie będzie istniał, program sam go utworzy
+	- w trakcie działania programu na ekranie wypisywane są informacje o tym jakie dane w danym momencie producent przesyła do potoku (producer data) i ile bajtów mają te dane (producer bytes)
+	- podobnie rzecz ma się z konsumentem, tzn. wypisywane są informacje jakie dane pobiera w danym momencie z potoku (consumer data) i ile bajtów mają te dane (consumer bytes)
+	- po skończeniu programu uruchamia się polecenie diff, które sprawdza czy obydwa pliki (Input i Output) są identyczne
+	
+	2. Input
+	- plik tekstowy z danymi, które producent ma umieszczać w potoku
+	
+	3. Makefile
+	
+====================================================================================================
+	
+Jak uruchomić program:
+
+	1. Najpierw:
+		
+		make 4
+	
+	2. Później na przykład:
+	
+		make run4 IN=Input OUT=Output
+		
+		make run4 IN=Input OUT=Foo
+		
+		make run4 IN=SomeOtherInputFile OUT=RandomName

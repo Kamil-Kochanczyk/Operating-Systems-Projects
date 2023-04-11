@@ -1,0 +1,40 @@
+Autor: Kamil Kochańczyk, 31.05.2022
+
+====================================================================================================
+
+Zawartość:
+
+	1. Program.c
+	- program ze wzajemnym wykluczaniem wątków
+	- wątek główny tworzy wątki i czeka na ich zakończenie
+	- każdy wątek próbuje uzyskać dostęp do licznika globalnego (zainicjalizowanego na początku wartością 0) i zwiększyć jego wartość o 1
+	- dostęp do licznika globalnego jest zsynchronizowany za pomocą muteksu
+	- wątek, który w danym momencie jest w swojej sekcji krytycznej pojawia się po prawej stronie ekranu, a w przeciwnym wypadku - po lewej
+	- program wymaga dwóch argumentów konsoli
+	- pierwszy argument to liczba, która mówi ile wątków zostanie utworzonych
+	- drugi argument to liczba, która mówi ile sekcji krytycznych będzie w każdym utworzonym wątku
+	- końcowa wartość licznika globalnego powinna wynosić: liczba wątków * liczba sekcji krytycznych
+
+	2. Makefile
+
+====================================================================================================
+
+Jak uruchomić program:
+
+	1. Najpierw:
+
+		make 9
+
+	2. Później na przykład:
+
+		./Program 3 5
+		./Program 8 6
+
+	3. Czyszczenie:
+
+		make clean
+
+	4. Archiwizacja:
+
+		make tar
+

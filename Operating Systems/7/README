@@ -1,0 +1,58 @@
+Autor: Kamil Kochańczyk, 22.05.2022
+
+====================================================================================================
+
+Zawartość:
+
+	1. SemaphoreLibrary.h
+	- biblioteka funkcji pomocniczych (semafory)
+
+	2. SemaphoreLibrary.c
+	- implementacja biblioteki funkcji pomocniczych (semafory)
+
+	3. SharedMemoryLibrary.h
+	- biblioteka funkcji pomocniczych (pamięć dzielona)
+
+	4. SharedMemoryLibrary.c
+	- implementacja biblioteki funkcji pomocniczych (pamięć dzielona)
+
+	5. Parent.c
+	- program, który uruchamia producenta i konsumenta w procesach potomnych
+	- przed uruchomieniem procesów potomnych tworzy semafory i pamięć dzieloną
+	- po zakończeniu działania procesów potomnych usuwa semafory i pamięć dzieloną
+
+	6. Producer.c
+	- producent pobiera dane z pliku Input i umieszcza je w pamięci dzielonej
+
+	7. Consumer.c
+	- konsument odbiera dane z pamięci dzielonej i umieszcza je w pliku Output
+
+	8. Input
+	- plik tekstowy z danymi wejściowymi
+
+	9. Pseudocode
+	- pseudokod z rozwiązaniem problemu "producenta-konsumenta" dla wielu producentów i wielu konsumentów
+
+	10. Makefile
+
+====================================================================================================
+
+Jak uruchomić program:
+
+	1. Najpierw:
+
+		make 7
+
+	2. Później:
+
+		./Parent
+		diff -s Input Output
+
+	3. Czyszczenie:
+
+		make clean
+
+	4. Archiwizacja:
+
+		make tar
+

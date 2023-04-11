@@ -1,0 +1,33 @@
+Autor: Kamil Kochańczyk, 19.03.2022
+
+====================================================================================================
+
+Zawartość:
+
+	1. DisplayInfo.c
+	- program, który wypisuje na ekran informacje o danym procesie
+	- służy do wypisywania informacji o procesach potomnych w programie zad2
+	
+	2. zad2.c
+	- program, który tworzy z procesu macierzystego n procesów potomnych i wypisuje informacje na temat wszystkich procesów
+	- informacje na temat każdego procesu potomnego są wypisywane przez program, którego nazwa jest przekazana jako argument konsoli (domyślnie powinien to być program DisplayInfo)
+	- program, którego nazwa przekazywana jest jako argument konsoli powinien znajdować się w tym samym folderze, co kod źródłowy zad2.c (i powinien być skompilowany, gotowy do uruchomienia)
+	
+	3. Makefile
+	
+	4. Pytania
+	- Ile procesów powstanie przy n-krotnym wywołaniu funkcji fork-exec jak wyżej i dlaczego?
+	
+====================================================================================================
+	
+Jak uruchomić program:
+
+	1. Uruchomienie głównego programu
+	   make zad2
+	   ./zad2 DisplayInfo
+	   
+	2. Czyszczenie
+	   make clean
+	   
+	3. Archiwizacja i kompresja
+	   make tar

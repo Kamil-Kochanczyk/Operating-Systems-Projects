@@ -1,0 +1,33 @@
+Ile procesów powstanie przy n-krotnym wywołaniu funkcji fork i dlaczego?
+
+Powstanie 2^n procesów.
+
+Na początku mamy 1 proces. (1)
+
+Proces 1
+1. fork();
+2. fork();
+3. fork();
+...
+n. fork();
+
+Po pierwszej linijce będą dwa procesy - proces macierzysty i jego kopia. (1 * 2 = 2)
+
+Proces 1									Proces 2
+2. fork();									2. fork();
+3. fork();									3. fork();
+...											...
+n. fork();									n. fork();
+
+Każdy z tych procesów znowu się podwoi. (2 * 2 = 4)
+
+Proces 1   ->   Proces 12					Proces 2   ->   Proces 22
+3. fork();		3. fork();					3. fork();		3. fork();
+...				...							...				...
+n. fork();		n. fork();					n. fork();		n. fork();
+
+Każdy z tych procesów znowu się podwoi... (4 * 2 = 8)
+
+...
+
+I tak n razy. (2 * 2 * 2 * ... * 2 = 2^n)
